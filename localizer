@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function localizer {
+    echo "In function localizer, a starts as $a"
+    local a
+    echo "After declaring a, a is now $a"
+    a="I'm an a"
+    echo "After initialzing a, a is now $a"
+}
+
+a="This is a"
+echo "Before function, a is $a"
+localizer
+echo "After function, a is $a"
