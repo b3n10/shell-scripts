@@ -1,0 +1,3 @@
+#!/bin/bash
+
+for file in *; do echo cp $file /tmp/$file.sh; done | bash -x
