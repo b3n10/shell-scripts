@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo -n 'Age: '
+read age
+
+if [[ $age -ne 0 ]]; then
+	echo "Your age is $age"
+	exit 0
+else
+	echo "You don't have age."
+	exit 1
+fi
