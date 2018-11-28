@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # rename .log to .LOG
-find / -type f -name "*.log" 2> /dev/null | grep -v var | while read fname; do echo cp $fname ${fname/.log/.LOG}; done
+find / -type f -name "*.log" 2> /dev/null | grep -v var | while read fname; do echo cp $fname ${fname/.log/.LOG}; done | bash -x
