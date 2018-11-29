@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo "Lines matching.."
+echo -e "use:"
+grep -n "use" $1
+
+echo -e "\nuse: ignore case"
+grep -ni "use" $1
+
+echo -e "\nignore use:"
+grep -niv "use" $1
+
+echo -e "\nStarts with This:"
+grep -ni "^this" $1
+
+echo -e "\nOnly word This:"
+grep -io "^this" $1
+
+echo -e "\nEnds with copyright:"
+grep -ni "copyright$" $1
+
+echo -e "\nContains tion:"
+grep -ni ".tion" $1
+
+echo -e "\nOnly word contains tion:"
+grep -nio "...tion" $1
+
+echo -e "\nContains tri:"
+grep -ni "use[d]" $1

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+array=(123 456 789 'abc def')
+
+echo "array (${array[@]}) has ${#array[@]} elements"
+
+for (( i=0; i < ${#array[@]}; i++ )); do
+    echo "$i: ${array[$i]}"
+done
