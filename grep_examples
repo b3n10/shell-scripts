@@ -25,5 +25,66 @@ grep -ni ".tion" $1
 echo -e "\nOnly word contains tion:"
 grep -nio "...tion" $1
 
-echo -e "\nContains tri:"
-grep -ni "use[d]" $1
+echo -e "\nContains [dtg]:"
+grep -n "re[dtg]" $1
+
+echo -e "\nNot containing [dtg]:"
+grep -n "re[^dtg]" $1
+
+echo -e "\nAny word:"
+grep -n "\w" $1
+
+# echo -e "\nAny whitespace:"
+# grep -n "[ \f\t\n\r]" $1
+
+echo -e "\nAny digit:"
+grep -n "[0-9]" $1
+
+# echo -e "\nLimit to ()"
+# grep -n "(of)" $1
+
+echo -e "\nzero, one, many match:"
+grep -n "not *" $1
+
+# echo -e "\none or more match:"
+# grep -n "not+" $1
+
+# echo -e "\nn instances:"
+# grep -n "not {1}" $1
+
+echo -e "\nStarts capital letter"
+grep -n "^[A-Z]" $1
+
+echo -e "\nNumbers"
+grep -n "[0-9]" $1
+
+echo -e "\nRedistributions (of|in)"
+grep -nE "Redistributions (of|in)" $1
+
+echo -e "\nzero or one match:"
+grep -nE "not(ice)?" $1
+
+echo -e "\n"
+grep -E "I am the (ben|doggie)\." /tmp/string
+# I am the ben.
+# I am the ethan.
+# I am the doggie. I am the doggie.
+# I am the ben. I am the doggie.
+
+echo -e "\n5 digits only:"
+grep -E "^[0-9]{5}$" /tmp/string
+
+echo -e "\n5 digits with dash 4:"
+grep -E "^[0-9]{5}(-[0-9]{4})$" /tmp/string
+# 12345
+# 12345678
+# 12345-6789
+# 12345-
+# 12345-5454
+
+echo -e "\nvariant spellings of Moammar Gadhafi:"
+grep -Eo "M[ou]'?am+[ae]r ([AEae]l[- ])?[GKQ]h?[aeu]+([dtz][dhz]?)+af[iy]" /tmp/string
+# Muammar al-Kaddafi (BBC)
+# Moammar Gadhafi (Associated Press)
+# Muammar al-Qadhafi (Al-Jazeera)
+# Mu'ammar Al-Qadhafi (U.S. Department of State)
