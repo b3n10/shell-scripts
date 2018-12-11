@@ -8,7 +8,7 @@ while true; do
 
     mymem="M: $(free -m | grep Mem | awk '{ printf "%.2f", ($3 + $5) / $2 * 100 }')%"
 
-    mydsk="D: $(df -H /dev/sda1 | sed '1d' | awk '{print($5)}')"
+    mydsk="D: $(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
 
     myvol="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
 
