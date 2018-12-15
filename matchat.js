@@ -1,7 +1,6 @@
-const matchat = document.querySelector('.acp_content').children[0].src
-const matchatURL = matchat.slice(8)
-
-window.open('http://' + matchatURL)
+if (yds = document.querySelector('.acp_content')) url = yds.children[0].src.slice(8);
+else url = document.querySelectorAll('.contentVencher')[0].src.slice(8);
+window.open('http://' + url)
 
 // browser bookmark
-javascript:(function(){ const matchat = document.querySelector('.acp_content').children[0].src; const matchatURL = matchat.slice(8); window.open('http://' + matchatURL) })()
+javascript:(function(){if (yds = document.querySelector('.acp_content')) url = yds.children[0].src.slice(8); else url = document.querySelectorAll('.contentVencher')[0].src.slice(8);window.open('http://' + url)})()
