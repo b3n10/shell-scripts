@@ -10,7 +10,8 @@ while true; do
 
     mydsk="D: $(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
 
-    myvol="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
+    # myvol="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
+    myvol="V: $(pactl list sinks | grep 'Volume' | cut -d ' ' -f5 | head -n 1)"
 
     mybrt="B: $( cat /sys/class/backlight/intel_backlight/brightness )"
 
