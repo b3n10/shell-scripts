@@ -13,7 +13,8 @@ while true; do
     # myvol="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
     myvol="V: $(pactl list sinks | grep 'Volume' | cut -d ' ' -f5 | head -n 1)"
 
-    mybrt="B: $( cat /sys/class/backlight/intel_backlight/brightness )"
+    brt=$( cat /sys/class/backlight/intel_backlight/brightness )
+    mybrt="B: $(( $brt*100 / 3000 ))%"
 
     mydate="$( date +'%a, %b %d %Y | %H:%M:%S' )"
 

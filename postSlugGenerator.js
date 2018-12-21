@@ -21,3 +21,13 @@ console.log(teama + ' vs ' + teamb + ' ' + date)
 
 // broswer API only
 // copy(teama + ' vs ' + teamb + ' ' + date)
+/*
+matches = document.querySelectorAll('.matches')[1].querySelector('tbody').querySelectorAll('tr');
+teama = document.querySelector('.container.left').children[0].textContent.strip();
+teamb = document.querySelector('.container.right').children[0].textContent.strip();
+date = "";
+
+matches.forEach(m => { if (Array.from(m.querySelectorAll('td.team.team-a'))[0].querySelector('a').title === teama && Array.from(m.querySelectorAll('td.team.team-b'))[0].querySelector('a').title === teamb) { date = Array.from(m.querySelectorAll('td.full-date'))[0].innerText } });
+
+navigator.clipboard.writeText(teama + ' vs ' + teamb + ' ' + date).then(function() { console.log('success') }, function() { console.log('failed') });
+*/
