@@ -12,12 +12,7 @@ while true; do
 
     # https://stackoverflow.com/a/13209479/6353682
 
-    if [ -e /dev/shm/newmail ]; then
-
-        mymail=$( cat /dev/shm/newmail )
-        xsetroot -name "$mymail | $( date +'%H:%M:%S' )"
-
-    elif [ -e /dev/shm/volume_status ]; then
+    if [ -e /dev/shm/volume_status ]; then
 
         # if $VOL_DELAY is unset or has a value of 2, then reset value (0) by getting it from file
         [[ -z $VOL_DELAY || $VOL_DELAY -eq 2 ]] && VOL_DELAY=$( cat /dev/shm/volume_delay )
@@ -54,11 +49,16 @@ while true; do
             rm /dev/shm/brightness_delay
         fi
 
+    elif [ -e /dev/shm/newmail ]; then
+
+        mymail=$( cat /dev/shm/newmail )
+        xsetroot -name "$mymail | $( date +'%H:%M:%S' )"
+
     else
 
         sep="|"
-        mymem="m:$(free -m | grep Mem | awk '{ printf "%.0f", ($3 + $5) / $2 * 100 }')%"
-        mydsk="d:$(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
+        mymem="M:$(free -m | grep Mem | awk '{ printf "%.0f", ($3 + $5) / $2 * 100 }')%"
+        mydsk="D:$(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
         # mydsk="🖴 $(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
         # myvol="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
         # myvol="🔊$(pactl list sinks | grep 'Volume' | cut -d ' ' -f5 | head -n 1)"
