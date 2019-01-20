@@ -1,10 +1,12 @@
 #!/bin/sh
 
 # backup firefox profile
-# any .default profile in firefox directory
+# any .default or .personal profile in firefox directory
 
-fileName1=/dev/shm/ffx-work-$( date +'%m%d%Y-%H%M%S' ).tar.gz
-tar -zcvf $fileName1 ~/.mozilla/firefox/*.default/ && echo "Done archiving: $fileName1"
+cd ~/.mozilla/firefox/
 
-fileName2=/dev/shm/ffx-personal-$( date +'%m%d%Y-%H%M%S' ).tar.gz
-tar -zcvf $fileName2 ~/.mozilla/firefox/*.personal/ && echo "Done archiving: $fileName2"
+fileName1=/dev/shm/ffx-work-$( date +'%m%d%Y' ).tar.gz
+tar -zcvf $fileName1 *.default/ && echo "Done archiving: $fileName1"
+
+fileName2=/dev/shm/ffx-personal-$( date +'%m%d%Y' ).tar.gz
+tar -zcvf $fileName2 *.personal/ && echo "Done archiving: $fileName2"
