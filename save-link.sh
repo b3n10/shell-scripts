@@ -2,8 +2,8 @@
 
 read -p "Link: " link
 
-if [ -z $link ]; then
+if [ -z "$link" ]; then
     echo "Usage: save-link <URL>"
 else
-    echo $link >> ~/.save-linked
+    echo $link > ~/.save-linked
 fi
