@@ -57,13 +57,14 @@ while true; do
         # xsetroot -name "$(get_wifi_status) $mymem $sep $mydsk $sep $myvol $sep $mybrt $sep $mydate $sep $mybatt"
 
         sep="|"
+        mytemp="T:$(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)"
         mymem="M:$(free -m | grep Mem | awk '{ printf "%.0f", ($3 + $5) / $2 * 100 }')%"
         mydsk="D:$(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
         mydate="$( date +'%a, %b %d %Y, %H:%M:%S' )"
         batt_status=''
         [[ `acpi -b | awk '{ print $3 }'` = 'Charging,' ]] && batt_status='+'
         mybatt="$( acpi -b | sed 's/.*[charging|full], \([0-9]*\)%.*/\1/gi' )%$batt_status"
-        main_text="$(get_wifi_status) $mymem $mydsk $sep $mydate $sep $mybatt"
+        main_text="$(get_wifi_status) $mytemp $mymem $mydsk $sep $mydate $sep $mybatt"
     fi
 
     xsetroot -name "$main_text"
