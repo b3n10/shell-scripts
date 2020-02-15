@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tee /sys/class/backlight/intel_backlight/brightness <<< 0
+sh /home/ben/scripts/brightness_status.sh
