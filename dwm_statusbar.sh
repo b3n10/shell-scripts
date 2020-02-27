@@ -2,7 +2,7 @@
 # https://stackoverflow.com/a/13209479/6353682
 
 get_wifi_status() {
-    mywifi="$( ip addr show | grep 192 )"
+    mywifi="$( ip addr show | grep 168 )"
 
     if [ ! -n "$mywifi" ]; then
         echo  "❎$sep"
