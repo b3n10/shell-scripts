@@ -13,5 +13,5 @@ p=${pc[1]//%/ }
 
 if [[ ${st[1]} == "discharging" && "$p" -le 18 ]]; then
     /usr/bin/paplay /home/ben/scripts/system-fault.ogg
-    touch /dev/shm/testbat
+    # touch /dev/shm/testbat
 fi
