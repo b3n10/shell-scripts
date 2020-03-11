@@ -48,6 +48,26 @@ while true; do
     elif [ -e /dev/shm/newmail ]; then
         mymail=$( cat /dev/shm/newmail )
         main_text="$mymail | $( date +'%H:%M:%S' )"
+    elif [ -e /dev/shm/cpunormal_delay ]; then
+        [[ -z $DELAY || $DELAY -eq 2 ]] && DELAY=$( cat /dev/shm/cpunormal_delay )
+
+        main_text="CPU THROTTLE NORMAL"
+
+        DELAY=$((DELAY+1))
+
+        if [[ $DELAY -eq 2 ]]; then
+            sudo rm /dev/shm/cpunormal_delay
+        fi
+    elif [ -e /dev/shm/cpudown_delay ]; then
+        [[ -z $DELAY || $DELAY -eq 2 ]] && DELAY=$( cat /dev/shm/cpudown_delay )
+
+        main_text="CPU THROTTLE DOWN"
+
+        DELAY=$((DELAY+1))
+
+        if [[ $DELAY -eq 2 ]]; then
+            sudo rm /dev/shm/cpudown_delay
+        fi
     else
         # mydsk="🖴 $(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
         # myvol="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
