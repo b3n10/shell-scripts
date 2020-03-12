@@ -6,4 +6,4 @@ done
 
 echo level full-speed > /proc/acpi/ibm/fan
 
-echo "0" > /dev/shm/cpudown_delay
+su - ben -c "echo '0' > /dev/shm/cpudown_delay"

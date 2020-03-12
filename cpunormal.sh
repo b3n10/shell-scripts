@@ -1,6 +1,9 @@
 #!/bin/bash
 
-for i in 0 1 2 3 ; do echo 3400000 > /sys/devices/system/cpu/cpu$i/cpufreq/scaling_max_freq ; done
+for i in 0 1 2 3 ; do
+    echo 3400000 > /sys/devices/system/cpu/cpu$i/cpufreq/scaling_max_freq ;
+done
+
 echo level auto > /proc/acpi/ibm/fan
 
-echo "0" > /dev/shm/cpunormal_delay
+su - ben -c "echo '0' > /dev/shm/cpunormal_delay"

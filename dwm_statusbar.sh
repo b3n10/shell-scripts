@@ -56,7 +56,7 @@ while true; do
         DELAY=$((DELAY+1))
 
         if [[ $DELAY -eq 2 ]]; then
-            sudo rm /dev/shm/cpunormal_delay
+            rm /dev/shm/cpunormal_delay
         fi
     elif [ -e /dev/shm/cpudown_delay ]; then
         [[ -z $DELAY || $DELAY -eq 2 ]] && DELAY=$( cat /dev/shm/cpudown_delay )
@@ -66,7 +66,7 @@ while true; do
         DELAY=$((DELAY+1))
 
         if [[ $DELAY -eq 2 ]]; then
-            sudo rm /dev/shm/cpudown_delay
+            rm /dev/shm/cpudown_delay
         fi
     else
         # mydsk="🖴 $(df -H /dev/sda2 | sed '1d' | awk '{print($5)}')"
