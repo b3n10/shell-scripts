@@ -12,6 +12,7 @@ p=${pc[1]//%/ }
 # echo $p
 
 if [[ ${st[1]} == "discharging" && "$p" -le 18 ]]; then
-    /usr/bin/paplay /home/ben/scripts/system-fault.ogg
+    # /usr/bin/paplay /home/ben/scripts/system-fault.ogg
     # touch /dev/shm/testbat
+    echo 0 > /dev/null
 fi
