@@ -1,0 +1,3 @@
+#!/bin/sh
+
+firefox -p work https://wiki.archlinux.org/
