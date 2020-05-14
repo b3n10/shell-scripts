@@ -18,5 +18,7 @@ if [ -n "$mail" ]; then
     echo "$GCOUNT $notif_title" > /dev/shm/newmail
     # sudo -u ben DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "$notif_title: $GCOUNT" "$mail"
 else
-    rm /dev/shm/newmail
+	if [ -f "/dev/shm/newmail" ]; then
+		rm /dev/shm/newmail
+	fi
 fi
