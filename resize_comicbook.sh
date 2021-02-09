@@ -1,31 +1,36 @@
 #!/bin/bash
 
-# cd /dev/shm
-# find . -name *.cbr -exec resize_cbr {} \;
+comicbookname=$1
 
-filename="$1"
-newfilename=`echo $filename | cut -d '(' -f1`
-file_extension=${filename##*.}
+test -d $comicbookname || mkdir -p $comicbookname
 
-shopt -s extglob
-newfilename=${newfilename%%*( )}
-shopt -u extglob
+cover=""
+appendname=""
 
-newfilename=${newfilename:2}.cbz
+# for i in *.zip ; do
+for i in *.zip ; do
+    foldername="${i%.*}";
+    test -n "$appendname" || appendname="$foldername"
+    unzip -d $foldername $i;
 
-if [ "$file_extension" == "cbr" ];
-then
-    7z x "$1"
-else
-    unzip "$1"
-fi
+    cd $foldername
 
-for i in *.jpg;
-do
-    echo "file:" "$i"
-    convert "$i" -resize 1072x1448\! "$i";
+    for image in *.jpeg;
+    do
+        convert "$image" -resize 1072x1448\! "${foldername}_${image}";
+        test -n "$cover" || cover="${comicbookname}/${foldername}_${image}"
+        mv "${foldername}_${image}" -t ../"$comicbookname"
+    done
+
+    cd -
+
+    rm -rf $foldername
 done
 
-zip ${newfilename} *.jpg
+zip "${comicbookname}-${appendname}".cbr "${comicbookname}"/*.jpeg
 
-rm *.jpg
+ebook-convert *.cbr .epub -vv --cover=$cover --authors="$2"
+
+calibredb add *.epub
+
+rm -rf "$comicbookname" *.{cbr,epub}
