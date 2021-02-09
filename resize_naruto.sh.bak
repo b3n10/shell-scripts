@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for i in *.zip ; do
+    foldername="${i%.*}";
+    unzip -d $foldername $i;
+
+    cd $foldername
+
+    for image in *.jpeg;
+    do
+        convert "$image" -resize 1072x1448\! "$image";
+    done
+
+    zip ../${foldername}.cbr *.jpeg; # move cbr to previous dir
+
+    cd - # go back to previous dir
+
+    rm -rf $foldername # clean up / delete folder
+done
