@@ -2,7 +2,7 @@
 #isofile=/home/ben/workspace/qemu/ubuntu2004.img
 
 # qemu-system-x86_64 -m 1G -cpu host -smp 1 -enable-kvm -net nic,model=virtio -net bridge,br=br0 -drive format=raw,file="$1" -nographic
-qemu-system-x86_64 -m 1G -cpu host -smp 1 -enable-kvm -nic user,hostfwd=tcp::$2-:22 -drive format=raw,file="$1" -nographic &
+qemu-system-x86_64 -m 1G -cpu host -smp 1 -enable-kvm -nic user,hostfwd=tcp::$2-:22,hostfwd=tcp::1280-:80 -drive format=raw,file="$1" -nographic &
 
 # qemu-system-x86_64 -m 1G -cpu host -smp 1 -enable-kvm -nic user,hostfwd=tcp::10022-:22 -drive format=raw,file=/home/ben/workspace/qemu/ubuntu2004.img -nographic
 # qemu-system-x86_64 -m 1G -cpu host -smp 1 -enable-kvm -drive format=raw,file=/home/ben/workspace/qemu/ubuntu2004.img -display curses $@
